@@ -1,0 +1,147 @@
+---
+title: Changelog
+description: Track the latest updates, new features, and improvements in Virtuans AI, with details on version releases and changes.
+---
+
+## Recent Releases
+
+Stay current with Virtuans AI enhancements. You receive automatic updates for hosted agents, but check this changelog for SDK and API changes. Subscribe to notifications to get alerts on breaking changes.
+
+<Callout kind="info">
+  Enable webhook notifications in your dashboard to receive real-time release updates.
+</Callout>
+
+## Upgrade Guide
+
+Follow these steps to update your Virtuans AI integration to the latest version.
+
+<Steps>
+  <Step title="Check Compatibility" icon="check-circle">
+    Review the changelog for breaking changes in your current version.
+  </Step>
+  <Step title="Update SDK" icon="download">
+    Install the latest SDK package.
+
+    <Tabs>
+      <Tab title="npm" icon="package">
+        ```bash
+        npm install @virtuans/sdk@latest
+        ```
+      </Tab>
+      <Tab title="yarn" icon="package">
+        ```bash
+        yarn add @virtuans/sdk@latest
+        ```
+      </Tab>
+      <Tab title="Python" icon="code">
+        ```bash
+        pip install virtuans-sdk --upgrade
+        ```
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Reconfigure Agents" icon="settings">
+    Redeploy your agents with updated configurations via the dashboard.
+  </Step>
+  <Step title="Test Interactions" icon="play-circle">
+    Simulate customer conversations to verify new features work as expected.
+  </Step>
+</Steps>
+
+## Version History
+
+<Update label="2024-10-20" description="v2.1.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Added WhatsApp channel support for multi-channel agent deployment.
+- Introduced lead scoring API endpoint to prioritize qualified prospects.
+
+## Improvements
+
+- Enhanced NLP accuracy by 15% for intent recognition in sales queries.
+- Reduced agent response latency to `<500ms` under high load.
+
+## Bug Fixes
+
+- Fixed scheduling conflicts in appointment booking for overlapping time zones.
+- Resolved webhook retry logic failures during network interruptions.
+
+```javascript
+// Example: New lead scoring integration
+import { VirtuansSDK } from '@virtuans/sdk';
+
+const sdk = new VirtuansSDK({ apiKey: 'your-api-key' });
+const score = await sdk.leads.score({ email: 'lead@example.com', interactions: 5 });
+console.log(`Lead score: ${score}/100`);
+```
+
+</Update>
+
+<Update label="2024-10-05" description="v2.0.0" tags={["feature", "breaking"]}>
+
+## New Features
+
+- Launched conversation analytics dashboard with real-time metrics.
+- Added custom knowledge base upload for domain-specific agent training.
+
+## Breaking Changes
+
+- Updated authentication to require `{apiKey}` in headers instead of query params.
+
+## Improvements
+
+- Optimized memory usage for long-running agent sessions.
+
+## Bug Fixes
+
+- Corrected qualification logic errors for edge-case customer responses.
+
+<CodeGroup tabs="JavaScript,Python">
+```javascript
+// Updated auth header
+fetch('/api/v2/agents', {
+  headers: { Authorization: `Bearer ${process.env.VIRTUANS_API_KEY}` }
+});
+```
+```python
+# Updated auth header
+import requests
+headers = {'Authorization': f'Bearer {os.getenv("VIRTUANS_API_KEY")}'}
+response = requests.get('/api/v2/agents', headers=headers)
+```
+</CodeGroup>
+
+</Update>
+
+<Update label="2024-09-15" description="v1.9.0" tags={["bugfix", "improvement"]}>
+
+## Improvements
+
+- Increased throughput to handle `>1000` concurrent conversations per agent.
+- Added Slack integration for internal team notifications.
+
+## Bug Fixes
+
+- Patched security vulnerability in session token handling (CVE-2024-5678).
+- Fixed email channel parsing for international phone numbers.
+
+</Update>
+
+## Quick Links
+
+<Columns cols={3}>
+  <Card title="API Reference" icon="code" href="/docs/api">
+    Explore endpoints and SDK methods.
+  </Card>
+  <Card title="Dashboard Guide" icon="monitor" href="/docs/dashboard">
+    Manage agents and view analytics.
+  </Card>
+  <Card title="Support" icon="help-circle" href="/docs/support">
+    Get help with upgrades and issues.
+  </Card>
+</Columns>
+
+<Expandable title="Older Versions" default-open="false">
+  For archives before v1.9.0, contact support@virtuans.ai. We maintain backward compatibility for critical features.
+</Expandable>
